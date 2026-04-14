@@ -1,0 +1,37 @@
+<div class="container mt-4 mb-4">
+<h4>Edytor stylu tekstu</h4>
+<form (ngSubmit)="zatwierdz()">
+    <div class="form-group">
+    <label for="tekst">Tekst:</label>
+    <input [disabled]="widoczny" id="tekst" [(ngModel)]="wpisanyText" class="form-control" type="text"  name="tekst" >
+    </div>
+    <div class="form-group">
+    <label for="rozmiar">Rozmiar tekstu: </label>
+    <input id="rozmiar" name="rozmiar" class="form-range" min="10" max="50" [(ngModel)]="rozmiarTekstu" type="range">
+    </div>
+    <div class="form-group">
+    <label>kolor tekstu</label><br>
+    <input class="form-check-input" [(ngModel)]="color" id="czerwony" name="kolor" type="radio" value="red"><label>czerwony</label>
+    <input class="form-check-input" [(ngModel)]="color" id="niebieski" name="kolor" type="radio" value="blue">niebieski
+    <input class="form-check-input" [(ngModel)]="color" id="zielony" name="kolor" type="radio" value="green">zielony
+    </div>
+    <div class="form-group">
+    <label for="czcionka">Czcionka</label>
+    <select name="czcionka" [(ngModel)]="stylCzcionki" id="czcionka" class="form-select">
+        @for(czcionka of czcionki;track $index){
+            <option value="{{czcionka}}">{{czcionka}}</option>
+        }
+    </select>
+    </div>
+    <div class="form-group">
+    <input name="boldCheck" [(ngModel)]="czyPogrubione" class="form-check-input" id="boldCheck" type="checkbox">Pogrubienie
+    </div>
+    <button class="btn btn-primary">Zastosuj styl</button>
+    
+    <hr>
+    <button (click)="reset()" class="btn btn-secondary">Reset</button>
+</form>
+
+<p [ngStyle]="styl" >{{zatwierdzonyTekst}}</p>
+
+</div>
